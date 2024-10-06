@@ -7,7 +7,11 @@ const app = express();
 app.use(express.json());
 
 async function generatePDFfromHTML({ htmlContent }: { htmlContent: string }) {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({
+    headless: "shell",
+    executablePath: "/usr/bin/chromium",
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
   await page.setContent(htmlContent);
   const pdfbuff = await page.pdf({ format: "A4" });
