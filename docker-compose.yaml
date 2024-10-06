@@ -1,9 +1,0 @@
-# Docker Compose file for running the Puppeteer service
-services:
-  puppeteer-service:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
-      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true

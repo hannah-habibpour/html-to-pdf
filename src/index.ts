@@ -9,8 +9,6 @@ app.use(express.json());
 async function generatePDFfromHTML({ htmlContent }: { htmlContent: string }) {
   const browser = await puppeteer.launch({
     headless: "new",
-    executablePath: "/usr/bin/chromium",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.setContent(htmlContent);
