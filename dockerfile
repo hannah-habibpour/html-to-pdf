@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Install necessary dependencies for Puppeteer
 RUN apt-get update && apt-get install -y chromium
-RUN apt-get update && apt-get install -y chromium-browser
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
