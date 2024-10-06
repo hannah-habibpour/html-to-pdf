@@ -10,7 +10,6 @@ async function generatePDFfromHTML({ htmlContent }: { htmlContent: string }) {
   const browser = await puppeteer.launch({
     headless: "shell",
     executablePath: "/usr/bin/chromium",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.setContent(htmlContent);
