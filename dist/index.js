@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 function generatePDFfromHTML(_a) {
     return __awaiter(this, arguments, void 0, function* ({ htmlContent }) {
-        const browser = yield puppeteer.launch();
+        const browser = yield puppeteer.launch({ headless: "new" });
         const page = yield browser.newPage();
         yield page.setContent(htmlContent);
         const pdfbuff = yield page.pdf({ format: "A4" });
@@ -26,13 +26,18 @@ function generatePDFfromHTML(_a) {
 app.post("/generate-pdf", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { htmlContent } = req.body;
+        console.log(htmlContent);
         const pdfbuff = yield generatePDFfromHTML({ htmlContent });
+        console.log(pdfbuff);
         // Set headers for PDF response
         res.setHeader("Content-Type", "application/pdf");
+        console.log(pdfbuff.length);
         res.setHeader("Content-Length", pdfbuff.length);
         res.status(201).end(pdfbuff);
+        console.log("PDF generated successfully");
     }
     catch (error) {
+        console.log("error", error);
         res.status(500);
     }
 }));
