@@ -18,12 +18,17 @@ async function generatePDFfromHTML({ htmlContent }: { htmlContent: string }) {
 app.post("/generate-pdf", async (req: any, res: any) => {
   try {
     const { htmlContent }: { htmlContent: string } = req.body;
+    console.log(htmlContent);
     const pdfbuff = await generatePDFfromHTML({ htmlContent });
+    console.log(pdfbuff);
     // Set headers for PDF response
     res.setHeader("Content-Type", "application/pdf");
+    console.log(pdfbuff.length);
     res.setHeader("Content-Length", pdfbuff.length);
     res.status(201).end(pdfbuff);
+    console.log("PDF generated successfully");
   } catch (error) {
+    console.log("error", error);
     res.status(500);
   }
 });
