@@ -5,5 +5,5 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
       - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
